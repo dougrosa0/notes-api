@@ -5,7 +5,8 @@ const notesService = require('../services/dynamodb');
 // Get note by date
 router.get('/:userId/:date', async (req, res) => {
     try {
-        const note = await notesService.getNoteByDate(req.params.userId, req.params.date);
+        const decodedUserId = decodeURIComponent(req.params.userId);
+        const note = await notesService.getNoteByDate(decodedUserId, req.params.date);
         if (!note) {
             return res.status(404).json({ error: 'Note not found' });
         }
