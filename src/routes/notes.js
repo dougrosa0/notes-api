@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
     console.log(req.body);
 
-    if (userId || !date || !dayRank || !notes) {
+    if (!userId || !date || !dayRank || !notes) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
